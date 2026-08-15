@@ -8,9 +8,14 @@ const Footer = () => {
         
         {/* Brand Column */}
         <div className="lg:col-span-2">
-          <div className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2 mb-6">
-            <span className="bg-blue-600 text-white p-1.5 rounded-lg">GWC</span> Academy
-          </div>
+          <NavLink to="/" className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-3 mb-6 group inline-flex">
+            <img 
+              src="/images/logo.jpeg" 
+              alt="GWC Academy Logo" 
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover shadow-sm border border-slate-700 group-hover:border-slate-500 transition-colors"
+            />
+            <span>GWC Academy</span>
+          </NavLink>
           <p className="max-w-xs mb-6 text-base leading-relaxed text-slate-400">
             Building India's next generation of job-ready IT professionals. The educational branch of Vaptura Labs.
           </p>
@@ -67,10 +72,10 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <p>© {new Date().getFullYear()} GWC Academy. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-white transition font-medium">YouTube</a>
-          <a href="#" className="hover:text-white transition font-medium">LinkedIn</a>
-          <a href="#" className="hover:text-white transition font-medium">Discord</a>
-          <a href="#" className="hover:text-white transition font-medium">Instagram</a>
+          <a href="https://www.youtube.com/@GrowWithCode/" className="hover:text-white transition font-medium" target="_blank" rel="noreferrer">YouTube</a>
+          <a href="https://www.linkedin.com/company/gwc-academy/" className="hover:text-white transition font-medium" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="hhttps://discord.gg/tqegPmHCy" className="hover:text-white transition font-medium" target="_blank" rel="noreferrer">Discord</a>
+          <a href="https://www.instagram.com/grow_with_code/" className="hover:text-white transition font-medium" target="_blank" rel="noreferrer">Instagram</a>
         </div>
       </div>
     </footer>

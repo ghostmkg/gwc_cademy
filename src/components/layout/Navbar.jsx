@@ -18,9 +18,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* Logo */}
-        <NavLink to="/" className="text-2xl font-extrabold text-blue-700 tracking-tight flex items-center gap-2">
-          <span className="bg-blue-700 text-white p-1.5 rounded-lg">GWC</span>
-          Academy
+        <NavLink to="/" className="flex items-center gap-3 group">
+          <img 
+            src="/images/logo.jpeg" 
+            alt="GWC Academy Logo" 
+            className="h-10 w-10 md:h-11 md:w-11 rounded-full object-cover shadow-sm border border-slate-200 group-hover:shadow-md transition-shadow"
+          />
+          <span className="text-xl md:text-2xl font-extrabold text-blue-700 tracking-tight">
+            GWC Academy
+          </span>
         </NavLink>
 
         {/* Desktop Navigation */}
@@ -40,7 +46,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-slate-600"
+          className="md:hidden text-slate-600 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}

@@ -14,6 +14,7 @@ const CourseDetail = () => {
   const [openModule, setOpenModule] = useState(0);
   const [activeFaqTab, setActiveFaqTab] = useState('course');
   const [showSticky, setShowSticky] = useState(false);
+  const [showForm, setShowForm] = useState(false); // Controls the Google Form visibility
 
   // Scroll listener for sticky CTA
   useEffect(() => {
@@ -24,6 +25,16 @@ const CourseDetail = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Helper function to handle opening form & scrolling smoothly
+  const handleApplyClick = (e) => {
+    e.preventDefault();
+    setShowForm(true);
+    const enrollSection = document.getElementById('enroll');
+    if (enrollSection) {
+      enrollSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   if (!course) return <Navigate to="/courses" />;
 
@@ -63,9 +74,12 @@ const CourseDetail = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#enroll" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition text-center text-lg">
+                <button 
+                  onClick={handleApplyClick}
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition text-center text-lg"
+                >
                   Apply for Next Cohort
-                </a>
+                </button>
                 <button className="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-4 px-8 rounded-xl transition flex items-center justify-center gap-2">
                   <FileText size={18}/> Syllabus PDF
                 </button>
@@ -262,22 +276,62 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 9. PRICING & BUY FLOW (Transparent UI) */}
+      {/* 9. PRICING & BUY FLOW (Embedded Form Expansion) */}
       <section id="enroll" className="py-20 px-4 max-w-5xl mx-auto">
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200 flex flex-col lg:flex-row gap-12 items-center">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200 flex flex-col lg:flex-row gap-12 items-start">
           
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 w-full text-center lg:text-left">
             <span className="text-blue-600 font-bold tracking-widest text-sm uppercase mb-2 block">Program Fee</span>
             <h2 className="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6">{course.price}</h2>
             <p className="text-slate-600 mb-8 font-medium">Transparent pricing. No hidden fees.</p>
             
-            <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noreferrer" className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition text-lg mb-4 text-center">
-              Apply via Enrollment Form
-            </a>
-            <p className="text-sm text-slate-500">Step 1: Fill Form → Step 2: Receive Payment Link.</p>
+            {/* Conditional Rendering of Button vs Google Form */}
+            {!showForm ? (
+              <>
+                <button 
+                  onClick={() => setShowForm(true)}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition text-lg mb-4 text-center"
+                >
+                  Apply for Next Cohort
+                </button>
+                <p className="text-sm text-slate-500">Step 1: Fill Form → Step 2: Receive Payment Link.</p>
+              </>
+            ) : (
+              <div className="w-full mt-4 transform transition-all duration-500 ease-in-out">
+                {/* Form Header */}
+                <div className="flex justify-between items-center bg-slate-100 border border-slate-200 border-b-0 rounded-t-xl px-4 py-3">
+                  <span className="font-bold text-sm text-slate-700 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Complete Application
+                  </span>
+                  <button 
+                    onClick={() => setShowForm(false)} 
+                    className="text-slate-500 hover:text-rose-600 text-sm font-bold transition flex items-center gap-1"
+                  >
+                    Close ✕
+                  </button>
+                </div>
+                
+                {/* Embedded Form Iframe */}
+                <div className="w-full bg-white border border-slate-200 rounded-b-xl overflow-hidden shadow-inner">
+                  <iframe 
+                    src={course.enrollmentLink} 
+                    width="100%" 
+                    height="650" 
+                    frameBorder="0" 
+                    marginHeight="0" 
+                    marginWidth="0"
+                    title={`${course.title} Enrollment Form`}
+                    className="w-full bg-slate-50"
+                  >
+                    Loading form...
+                  </iframe>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="flex-1 w-full bg-slate-50 rounded-2xl p-8 border border-slate-100">
+          <div className="flex-1 w-full bg-slate-50 rounded-2xl p-8 border border-slate-100 sticky top-24">
             <h4 className="font-bold text-lg mb-6">What's Included:</h4>
             <ul className="space-y-4 text-slate-700 font-medium">
               <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> {course.duration} live program</li>
@@ -347,9 +401,12 @@ const CourseDetail = () => {
         <div className="md:hidden">
           <p className="font-extrabold text-xl text-slate-900">{course.price}</p>
         </div>
-        <a href="#enroll" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl shadow-md transition">
+        <button 
+          onClick={handleApplyClick}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl shadow-md transition"
+        >
           Apply Now
-        </a>
+        </button>
       </div>
 
     </div>

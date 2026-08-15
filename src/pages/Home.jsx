@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/seo/SEO';
 import { 
   CheckCircle2, Users, BookOpen, Star, ChevronRight, 
@@ -15,7 +16,8 @@ const GwcHome = () => {
       duration: "6 Months",
       mode: "Live + Recorded",
       projects: "4+ Industry Projects",
-      outcomes: ["Deploy responsive front-ends in React", "Design secure APIs", "Publish portfolio projects"] 
+      outcomes: ["Deploy responsive front-ends in React", "Design secure APIs", "Publish portfolio projects"],
+      link: "/programs/development"
     },
     { 
       title: "Cyber Security & VAPT", 
@@ -24,7 +26,8 @@ const GwcHome = () => {
       duration: "6 Months",
       mode: "Live + Recorded",
       projects: "Live Target Environments",
-      outcomes: ["Perform real-world VAPT", "Deploy & manage MS Sentinel", "Harden Linux infrastructure"] 
+      outcomes: ["Perform real-world VAPT", "Deploy & manage MS Sentinel", "Harden Linux infrastructure"],
+      link: "/programs/cybersecurity"
     },
     { 
       title: "Cloud Infrastructure", 
@@ -33,7 +36,8 @@ const GwcHome = () => {
       duration: "4 Months",
       mode: "Live + Recorded",
       projects: "3+ Cloud Deployments",
-      outcomes: ["Deploy code to AWS/Azure/GCP", "Manage IAM and security", "Build CI/CD pipelines"] 
+      outcomes: ["Deploy code to AWS/Azure/GCP", "Manage IAM and security", "Build CI/CD pipelines"],
+      link: "/programs/cloud"
     },
     { 
       title: "Programming Foundations", 
@@ -42,7 +46,8 @@ const GwcHome = () => {
       duration: "3 Months",
       mode: "Live + Recorded",
       projects: "Logic & Algorithm Challenges",
-      outcomes: ["Write clean, reusable Python/Java", "Master core data structures", "Build logical problem-solving skills"] 
+      outcomes: ["Write clean, reusable Python/Java", "Master core data structures", "Build logical problem-solving skills"],
+      link: "/programs/foundation"
     }
   ];
 
@@ -77,16 +82,16 @@ const GwcHome = () => {
               Go Beyond Theory. Train Like a Real Engineer.
             </h1>
             <p className="text-xl text-slate-300 mb-8 max-w-lg leading-relaxed">
-              Live instructor-led training in Development, Cybersecurity & Cloud — with recorded lessons, hands-on projects, industry exposure, and a ndustry exposure and internship opportunities through the <span className="text-blue-400 font-bold">Vaptura Labs</span>.
+              Live instructor-led training in Development, Cybersecurity & Cloud — with recorded lessons, hands-on projects, industry exposure, and internship opportunities through the <span className="text-blue-400 font-bold">Vaptura Labs</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 items-center mb-10">
-              <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-xl shadow-blue-900/50 text-lg transition flex items-center justify-center gap-2">
+              <Link to="/courses" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-xl shadow-blue-900/50 text-lg transition flex items-center justify-center gap-2">
                 View Career Programs <ChevronRight size={20} />
-              </button>
-              <button className="w-full sm:w-auto bg-transparent border border-slate-600 hover:border-slate-400 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition flex items-center justify-center gap-2">
+              </Link>
+              <Link to="/career-support" className="w-full sm:w-auto bg-transparent border border-slate-600 hover:border-slate-400 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition flex items-center justify-center gap-2">
                 Book Free Counselling
-              </button>
+              </Link>
             </div>
 
             {/* Micro Social Proof */}
@@ -175,9 +180,9 @@ const GwcHome = () => {
                   </ul>
                 </div>
                 
-                <button className="w-full py-3 px-4 rounded-xl font-bold text-blue-700 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors mt-auto border border-blue-100 flex items-center justify-center gap-2">
+                <Link to={program.link} className="w-full py-3 px-4 rounded-xl font-bold text-blue-700 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors mt-auto border border-blue-100 flex items-center justify-center gap-2">
                   View Program <ArrowRight size={16} />
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -226,9 +231,9 @@ const GwcHome = () => {
           </div>
 
           <div className="text-center">
-            <button className="bg-white text-blue-800 font-extrabold py-4 px-10 rounded-xl shadow-2xl hover:bg-slate-50 transition-all hover:scale-105 text-lg">
+            <Link to="/internship" className="inline-block bg-white text-blue-800 font-extrabold py-4 px-10 rounded-xl shadow-2xl hover:bg-slate-50 transition-all hover:scale-105 text-lg">
               Explore The Internship Pipeline
-            </button>
+            </Link>
             <p className="text-blue-200 text-sm mt-4">*Selection based on cohort performance and internal mock interviews.</p>
           </div>
         </div>
@@ -278,7 +283,7 @@ const GwcHome = () => {
                   </div>
                   <span className="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-emerald-500/30">Starts Sept 1</span>
                 </div>
-                <button className="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition">Reserve Your Seat</button>
+                <Link to="/courses/full-stack-web-dev" className="block text-center w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition">Reserve Your Seat</Link>
               </div>
               
               <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
@@ -289,7 +294,7 @@ const GwcHome = () => {
                   </div>
                   <span className="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-emerald-500/30">Starts Sept 15</span>
                 </div>
-                <button className="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition">Reserve Your Seat</button>
+                <Link to="/courses/vapt-beginner" className="block text-center w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-500 transition">Reserve Your Seat</Link>
               </div>
             </div>
           </div>
@@ -324,9 +329,9 @@ const GwcHome = () => {
                 </div>
               </div>
 
-              <button className="text-blue-600 font-bold hover:text-blue-800 transition flex items-center gap-1">
+              <Link to="/about" className="text-blue-600 font-bold hover:text-blue-800 transition flex items-center gap-1 w-max">
                 View Full Profile <ArrowRight size={16}/>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -341,12 +346,22 @@ const GwcHome = () => {
             Submit your questions anytime through the GWC support system and get mentor assistance. Join our Discord for peer networking, code reviews, and job updates.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition flex items-center justify-center gap-3">
+            <a 
+              href="https://discord.gg/tqegPmHCy" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition flex items-center justify-center gap-3"
+            >
               Join Discord Community
-            </button>
-            <button className="bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition flex items-center justify-center gap-3">
+            </a>
+            <a 
+              href="https://whatsapp.com/channel/0029ValnoT1CBtxNi4lt8h1s" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition flex items-center justify-center gap-3"
+            >
               Join WhatsApp Updates
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -387,12 +402,12 @@ const GwcHome = () => {
           <h2 className="text-4xl md:text-5xl font-extrabold mb-8">Ready to Build Your IT Career?</h2>
           <p className="text-xl text-blue-100 mb-12">Take the first step toward industry-ready skills and real-world experience.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-             <button className="bg-white text-blue-700 hover:bg-slate-50 font-bold py-4 px-10 rounded-xl shadow-2xl text-lg transition">
+             <Link to="/courses" className="inline-flex items-center justify-center bg-white text-blue-700 hover:bg-slate-50 font-bold py-4 px-10 rounded-xl shadow-2xl text-lg transition">
               Explore All Programs
-            </button>
-             <button className="bg-blue-800 border border-blue-600 hover:bg-blue-900 text-white font-bold py-4 px-10 rounded-xl shadow-xl text-lg transition">
+            </Link>
+             <Link to="/career-support" className="inline-flex items-center justify-center bg-blue-800 border border-blue-600 hover:bg-blue-900 text-white font-bold py-4 px-10 rounded-xl shadow-xl text-lg transition">
               Book Free Counselling
-            </button>
+            </Link>
           </div>
         </div>
       </section>
