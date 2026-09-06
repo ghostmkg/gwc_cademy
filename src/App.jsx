@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import Layout from './components/layout/Layout';
 import GwcHome from './pages/Home';
 import Courses from './pages/Courses';
@@ -16,6 +17,9 @@ import LiveProjects from './pages/LiveProjects';
 function App() {
   return (
     <Router>
+      {/* This invisible component resets the scroll position on every page change */}
+      <ScrollToTop />
+      
       <Routes>
         {/* The Layout component wraps everything inside this group */}
         <Route element={<Layout />}>

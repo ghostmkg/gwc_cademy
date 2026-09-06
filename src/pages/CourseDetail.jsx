@@ -5,7 +5,7 @@ import { coursesData } from '../data/courses';
 import { 
   CheckCircle2, Clock, Award, Video, FileText, ChevronDown, 
   ChevronUp, ShieldCheck, Target, Briefcase, Calendar, 
-  MonitorPlay, MessageSquare, Code2, Presentation, ChevronRight
+  MonitorPlay, MessageSquare, Code2, Presentation, ChevronRight, Send
 } from 'lucide-react';
 
 const CourseDetail = () => {
@@ -14,7 +14,8 @@ const CourseDetail = () => {
   const [openModule, setOpenModule] = useState(0);
   const [activeFaqTab, setActiveFaqTab] = useState('course');
   const [showSticky, setShowSticky] = useState(false);
-  const [showForm, setShowForm] = useState(false); // Controls the Google Form visibility
+  const [showForm, setShowForm] = useState(false); // Controls the Cashfree Form visibility
+  const [enquirySent, setEnquirySent] = useState(false); // Controls Enquiry Form status
 
   // Scroll listener for sticky CTA
   useEffect(() => {
@@ -26,7 +27,7 @@ const CourseDetail = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Helper function to handle opening form & scrolling smoothly
+  // Helper function to handle opening Cashfree form & scrolling smoothly
   const handleApplyClick = (e) => {
     e.preventDefault();
     setShowForm(true);
@@ -34,6 +35,14 @@ const CourseDetail = () => {
     if (enrollSection) {
       enrollSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Handle native enquiry form submission
+  const handleEnquirySubmit = (e) => {
+    e.preventDefault();
+    // Here you would normally send the data to your email or backend.
+    // For now, it shows a success message to the user.
+    setEnquirySent(true);
   };
 
   if (!course) return <Navigate to="/courses" />;
@@ -80,11 +89,21 @@ const CourseDetail = () => {
                 >
                   Apply for Next Cohort
                 </button>
-                <button className="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-4 px-8 rounded-xl transition flex items-center justify-center gap-2">
-                  <FileText size={18}/> Syllabus PDF
-                </button>
+                
+                {/* FIXED: Changed to <a> tag for actual PDF download */}
+                {course.syllabusPdf && (
+                  <a 
+                    href={course.syllabusPdf}
+                    download 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-4 px-8 rounded-xl transition flex items-center justify-center gap-2"
+                  >
+                    <FileText size={18}/> Syllabus PDF
+                  </a>
+                )}
               </div>
-              <p className="text-slate-400 text-sm mt-4">2-minute application • No payment required yet.</p>
+              <p className="text-slate-400 text-sm mt-4">2-minute application • Secure Payment via Cashfree.</p>
             </div>
 
             <div className="aspect-video bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
@@ -150,7 +169,7 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 4. VAPTURA LABS PIPELINE (Legally Safe) */}
+      {/* 4. VAPTURA LABS PIPELINE */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto bg-slate-900 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 shadow-2xl border border-slate-800">
           <div className="bg-blue-600/20 border border-blue-500/30 text-blue-400 p-6 rounded-2xl shrink-0">
@@ -169,7 +188,7 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 5. HOW YOUR LEARNING WORKS (Timeline) */}
+      {/* 5. HOW YOUR LEARNING WORKS */}
       <section className="py-20 px-4 bg-white border-y border-slate-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">How Your Learning Works</h2>
@@ -240,9 +259,19 @@ const CourseDetail = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-end mb-10">
             <h2 className="text-3xl font-bold">Detailed Curriculum</h2>
-            <button className="text-blue-600 font-bold hover:underline flex items-center gap-2">
-              <FileText size={18}/> Full PDF
-            </button>
+            
+            {/* FIXED: Changed to <a> tag for actual PDF download */}
+            {course.syllabusPdf && (
+              <a 
+                href={course.syllabusPdf}
+                download 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 font-bold hover:underline flex items-center gap-2"
+              >
+                <FileText size={18}/> Full PDF
+              </a>
+            )}
           </div>
 
           <div className="space-y-4">
@@ -276,16 +305,16 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 9. PRICING & BUY FLOW (Embedded Form Expansion) */}
+      {/* 9. PRICING & BUY FLOW (Cashfree Expansion Fix) */}
       <section id="enroll" className="py-20 px-4 max-w-5xl mx-auto">
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200 flex flex-col lg:flex-row gap-12 items-start">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200 flex flex-col lg:flex-row gap-12 items-start transition-all duration-500">
           
-          <div className="flex-1 w-full text-center lg:text-left">
+          <div className={`w-full ${showForm ? 'max-w-4xl mx-auto text-center' : 'flex-1 text-center lg:text-left'}`}>
             <span className="text-blue-600 font-bold tracking-widest text-sm uppercase mb-2 block">Program Fee</span>
             <h2 className="text-5xl md:text-6xl font-extrabold text-slate-900 mb-6">{course.price}</h2>
-            <p className="text-slate-600 mb-8 font-medium">Transparent pricing. No hidden fees.</p>
+            <p className="text-slate-600 mb-8 font-medium">Transparent pricing. Secure checkout via Cashfree.</p>
             
-            {/* Conditional Rendering of Button vs Google Form */}
+            {/* Conditional Rendering of Button vs Cashfree Form */}
             {!showForm ? (
               <>
                 <button 
@@ -294,15 +323,15 @@ const CourseDetail = () => {
                 >
                   Apply for Next Cohort
                 </button>
-                <p className="text-sm text-slate-500">Step 1: Fill Form → Step 2: Receive Payment Link.</p>
+                <p className="text-sm text-slate-500">Clicking apply opens secure checkout.</p>
               </>
             ) : (
-              <div className="w-full mt-4 transform transition-all duration-500 ease-in-out">
+              <div className="w-full mt-4 animate-in fade-in zoom-in duration-300">
                 {/* Form Header */}
                 <div className="flex justify-between items-center bg-slate-100 border border-slate-200 border-b-0 rounded-t-xl px-4 py-3">
                   <span className="font-bold text-sm text-slate-700 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Complete Application
+                    Secure Cashfree Checkout
                   </span>
                   <button 
                     onClick={() => setShowForm(false)} 
@@ -312,36 +341,39 @@ const CourseDetail = () => {
                   </button>
                 </div>
                 
-                {/* Embedded Form Iframe */}
+                {/* FIXED: Massive Width Cashfree Iframe */}
                 <div className="w-full bg-white border border-slate-200 rounded-b-xl overflow-hidden shadow-inner">
                   <iframe 
                     src={course.enrollmentLink} 
                     width="100%" 
-                    height="650" 
+                    height="800" 
                     frameBorder="0" 
                     marginHeight="0" 
                     marginWidth="0"
-                    title={`${course.title} Enrollment Form`}
+                    title={`${course.title} Checkout`}
                     className="w-full bg-slate-50"
                   >
-                    Loading form...
+                    Loading secure checkout...
                   </iframe>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="flex-1 w-full bg-slate-50 rounded-2xl p-8 border border-slate-100 sticky top-24">
-            <h4 className="font-bold text-lg mb-6">What's Included:</h4>
-            <ul className="space-y-4 text-slate-700 font-medium">
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> {course.duration} live program</li>
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Recording access ({course.batchDetails.recordings})</li>
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Practical assignments & projects</li>
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> 24x7 Doubt Submission system</li>
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> GWC Certificate of Completion</li>
-              <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Internship evaluation opportunity*</li>
-            </ul>
-          </div>
+          {/* FIXED: Hides the sidebar when form opens so the form gets 100% width! */}
+          {!showForm && (
+            <div className="flex-1 w-full bg-slate-50 rounded-2xl p-8 border border-slate-100 sticky top-24">
+              <h4 className="font-bold text-lg mb-6">What's Included:</h4>
+              <ul className="space-y-4 text-slate-700 font-medium">
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> {course.duration} live program</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Recording access ({course.batchDetails.recordings})</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Practical assignments & projects</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> 24x7 Doubt Submission system</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> GWC Certificate of Completion</li>
+                <li className="flex gap-3"><CheckCircle2 className="text-emerald-500 shrink-0"/> Internship evaluation opportunity*</li>
+              </ul>
+            </div>
+          )}
 
         </div>
       </section>
@@ -374,7 +406,74 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 11. CROSS-SELL (Where to go next) */}
+      {/* 11. ENQUIRY NATIVE FORM SECTION */}
+      <section className="py-24 px-4 bg-blue-50 border-t border-blue-100 mt-12">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="text-blue-600 font-bold tracking-widest text-sm uppercase mb-2 block">Get in Touch</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-slate-900">Still Have Questions About This Course?</h2>
+            <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+              Drop your details below. Our academic counseling team will reach out via WhatsApp/Call to clear your doubts and help you decide if this track is right for you.
+            </p>
+            <div className="flex items-center gap-4 text-slate-700 font-medium">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-200">
+                <MessageSquare className="text-blue-600" size={24} />
+              </div>
+              <p>Replies within 24 working hours.</p>
+            </div>
+          </div>
+
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200">
+            {enquirySent ? (
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 size={40} className="text-emerald-600" />
+                </div>
+                <h4 className="text-2xl font-bold text-slate-900 mb-2">Enquiry Sent!</h4>
+                <p className="text-slate-600">Thank you. Our counselor will contact you shortly.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleEnquirySubmit} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Enquiring About</label>
+                  <input 
+                    type="text" 
+                    value={course.title} 
+                    readOnly 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-500 font-medium outline-none cursor-not-allowed" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Enter your full name" 
+                    className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">WhatsApp Number</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    placeholder="+91 00000 00000" 
+                    className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition" 
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition shadow-lg flex items-center justify-center gap-2 mt-4"
+                >
+                  Submit Enquiry <Send size={18} />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 12. CROSS-SELL (Where to go next) */}
       <section className="py-20 px-4 bg-slate-100 border-t border-slate-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-center">Where Can You Go After This?</h2>
@@ -392,7 +491,7 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* 12. STICKY MOBILE CTA */}
+      {/* 13. STICKY MOBILE CTA */}
       <div className={`fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] p-4 transform transition-transform duration-300 z-50 flex items-center justify-between md:justify-center md:gap-12 ${showSticky ? 'translate-y-0' : 'translate-y-full'}`}>
         <div className="hidden md:block">
           <p className="text-xs text-slate-500 font-bold uppercase">{course.title}</p>
