@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -37,17 +37,21 @@ const Navbar = () => {
           <NavLink to="/contact" className={navLinkStyles}>Contact</NavLink>
         </nav>
 
-        {/* CTA Button */}
+        {/* Desktop CTA Button */}
         <div className="hidden md:block">
-          <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+          <Link 
+            to="/courses" 
+            className="inline-block bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 text-center"
+          >
             Enroll Now
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button 
           className="md:hidden text-slate-600 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -56,13 +60,43 @@ const Navbar = () => {
       {/* Mobile Navigation Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-4 shadow-lg">
-          <NavLink to="/" onClick={() => setIsOpen(false)} className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}>Home</NavLink>
-          <NavLink to="/courses" onClick={() => setIsOpen(false)} className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}>Courses</NavLink>
-          <NavLink to="/about" onClick={() => setIsOpen(false)} className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}>About Us</NavLink>
-          <NavLink to="/contact" onClick={() => setIsOpen(false)} className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}>Contact</NavLink>
-          <button className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700">
+          <NavLink 
+            to="/" 
+            onClick={() => setIsOpen(false)} 
+            className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}
+          >
+            Home
+          </NavLink>
+          <NavLink 
+            to="/courses" 
+            onClick={() => setIsOpen(false)} 
+            className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}
+          >
+            Courses
+          </NavLink>
+          <NavLink 
+            to="/about" 
+            onClick={() => setIsOpen(false)} 
+            className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}
+          >
+            About Us
+          </NavLink>
+          <NavLink 
+            to="/contact" 
+            onClick={() => setIsOpen(false)} 
+            className={({isActive}) => `block font-medium ${isActive ? "text-blue-700" : "text-slate-600"}`}
+          >
+            Contact
+          </NavLink>
+          
+          {/* Mobile CTA Button */}
+          <Link 
+            to="/courses" 
+            onClick={() => setIsOpen(false)} 
+            className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 text-center transition"
+          >
             Enroll Now
-          </button>
+          </Link>
         </div>
       )}
     </header>

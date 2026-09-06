@@ -309,7 +309,7 @@ const GwcHome = () => {
           <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-200 text-left flex flex-col md:flex-row gap-10 items-center relative">
             <div className="w-40 h-40 bg-slate-200 rounded-full shrink-0 border-4 border-white shadow-lg overflow-hidden">
                 {/* Image Placeholder - Replace with actual photo */}
-                <div className="w-full h-full bg-slate-300 flex items-center justify-center text-slate-500 text-sm text-center p-2">Manish Photo</div>
+                <img src="/images/manish.png" alt="Manish Goswami" className="w-full h-full object-cover" />
             </div>
             <div className="flex-grow">
               <h3 className="text-3xl font-extrabold text-slate-900 mb-1">Manish Goswami</h3>

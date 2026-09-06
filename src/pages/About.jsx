@@ -167,36 +167,74 @@ const About = () => {
         </div>
       </section>
 
-      {/* 5. MEET YOUR MENTOR */}
-      <section className="py-24 px-4 max-w-5xl mx-auto">
+      {/* 5. MEET THE FOUNDERS */}
+      <section className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-blue-600 font-bold tracking-widest text-sm uppercase mb-3 block">Leadership & Mentorship</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Meet the Lead Instructor</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Meet the Founders</h2>
           <p className="text-slate-600 text-lg">Training created by active practitioners, not theoretical academics.</p>
         </div>
 
-        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-10 items-center">
-          <div className="w-44 h-44 bg-slate-200 rounded-full shrink-0 border-4 border-blue-100 shadow-md flex items-center justify-center text-slate-500 font-bold text-sm text-center p-4">
-            Mentor Photo
-          </div>
-          <div>
-            <h3 className="text-3xl font-extrabold text-slate-900 mb-1">Manish Goswami</h3>
-            <p className="text-blue-600 font-bold text-lg mb-4">Founder & CEO — Vaptura Labs | Founder — GWC Academy</p>
-            <p className="text-slate-600 text-base leading-relaxed mb-6">
-              Experienced SOC Analyst and former DevSecOps Engineer at Archlynk. Manish specializes in cloud-native security automation, penetration testing (VAPT), and defensive SIEM architecture. He established GWC Academy to forge candidates with real-world troubleshooting capabilities.
-            </p>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Manish Goswami */}
+          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-slate-200 flex flex-col h-full hover:shadow-lg transition">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+              <div className="w-32 h-32 bg-slate-200 rounded-full shrink-0 border-4 border-blue-100 shadow-md flex items-center justify-center overflow-hidden">
+                <img src="/images/manish.png" alt="Manish Goswami" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-2xl font-extrabold text-slate-900 mb-1">Manish Goswami</h3>
+                <p className="text-blue-600 font-bold text-sm leading-snug">
+                  CEO and Founder, Vaptura Labs & GWC Academy
+                </p>
+              </div>
+            </div>
             
-            <p className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Professional Certifications:</p>
-            <div className="flex flex-wrap gap-2.5">
-              <span className="bg-slate-100 text-slate-800 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200">
-                GCP Professional Cloud Architect
-              </span>
-              <span className="bg-slate-100 text-slate-800 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200">
-                Microsoft SC-200
-              </span>
-              <span className="bg-slate-100 text-slate-800 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200">
-                Certified Ethical Hacker (CEH)
-              </span>
+            <div className="flex-1 space-y-6 text-sm text-slate-600 flex flex-col justify-between">
+              <p className="leading-relaxed text-base">
+                Manish's journey into the tech world began at the <strong>Durgapur Institute of Advance Technology and Management</strong>, where he earned his B.Tech (2018-2022). Over the past 4 years, he has immersed himself in the trenches of the IT industry, gaining extensive hands-on experience across Backend Engineering, Cyber Security, DevOps, and DevSecOps. Driven by a passion for solving complex production challenges, he founded Vaptura Labs and GWC Academy to bridge the gap between traditional academic theory and real-world engineering demands.
+              </p>
+              <div>
+                <strong className="text-slate-900 block mb-3 text-base">Professional Certifications</strong>
+                <div className="flex flex-wrap gap-2.5">
+                  {["CEH", "SC-200", "AZ-500", "SC-300", "GCP Professional Cloud Architect", "GCP Associate Cloud Engineer"].map((cert, idx) => (
+                    <span key={idx} className="bg-slate-100 text-slate-800 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200">
+                      {cert}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tanvi Nimbalkar */}
+          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-slate-200 flex flex-col h-full hover:shadow-lg transition">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+              <div className="w-32 h-32 bg-slate-200 rounded-full shrink-0 border-4 border-emerald-100 shadow-md flex items-center justify-center overflow-hidden">
+                <img src="/images/tanvi.png" alt="Tanvi Nimbalkar" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-2xl font-extrabold text-slate-900 mb-1">Tanvi Nimbalkar</h3>
+                <p className="text-emerald-600 font-bold text-sm leading-snug">
+                  Co-Founder, Vaptura Labs
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex-1 space-y-6 text-sm text-slate-600 flex flex-col justify-between">
+              <p className="leading-relaxed text-base">
+                Tanvi's deep-rooted interest in digital defense led her to pursue a B.Sc in IT from <strong>Vaze Kelkar College Mumbai</strong> (2021-2024). With 4 years of dedicated, hands-on experience in Cyber Security and Ethical Hacking, she has developed a sharp eye for identifying enterprise vulnerabilities and securing digital perimeters. As the Co-Founder of Vaptura Labs, Tanvi combines her strong academic foundation with practical threat-hunting expertise to mentor and cultivate the next generation of cybersecurity professionals.
+              </p>
+              <div>
+                <strong className="text-slate-900 block mb-3 text-base">Professional Certifications</strong>
+                <div className="flex flex-wrap gap-2.5">
+                  {["CEH", "SC-200", "SC-300"].map((cert, idx) => (
+                    <span key={idx} className="bg-slate-100 text-slate-800 px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200">
+                      {cert}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
