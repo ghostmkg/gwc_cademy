@@ -8,7 +8,7 @@ export const cehCourseData = {
   duration: "4 Months",
   mode: "Live + Recorded",
   originalPrice: "₹14,999",
-  price: "₹9,999 + 18% GST",
+  price: "₹9,999 + GST",
   enrollmentLink: "https://payments.cashfree.com/forms/gwc-academy-ceh",
   syllabusPdf: "/syllabi/ceh-certified-ethical-hacker.pdf",
   enquiryLink: "/contact?course=CEH+(Certified+Ethical+Hacker)",

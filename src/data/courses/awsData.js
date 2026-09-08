@@ -8,7 +8,7 @@ export const awsCourseData = {
   duration: "3 Months",
   mode: "Live + Recorded",
   originalPrice: "₹10,999",
-  price: "₹5,999 + 18% GST",
+  price: "₹5,999 + GST",
   enrollmentLink: "https://payments.cashfree.com/forms/aws-fundamental-course",
   syllabusPdf: "/syllabi/aws-amazon-web-services.pdf",
   enquiryLink: "/contact?course=AWS+(Amazon+Web+Services)",

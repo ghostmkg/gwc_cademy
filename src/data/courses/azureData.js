@@ -8,7 +8,7 @@ export const azureCourseData = {
   duration: "3 Months",
   mode: "Live + Recorded",
   originalPrice: "₹10,999",
-  price: "₹5,999 + 18% GST",
+  price: "₹5,999 + GST",
   enrollmentLink: "https://payments.cashfree.com/forms/azure-fundamentals-course",
   syllabusPdf: "/syllabi/microsoft-azure.pdf",
   enquiryLink: "/contact?course=Microsoft+Azure+Fundamentals",

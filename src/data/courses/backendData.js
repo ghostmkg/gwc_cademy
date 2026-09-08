@@ -8,7 +8,7 @@ export const backendCourseData = {
   duration: "4 Months",
   mode: "Live + Recorded",
   originalPrice: "₹10,499",
-  price: "₹4,999 + 18% GST",
+  price: "₹4,999 + GST",
   enrollmentLink: "https://payments.cashfree.com/forms/backend-course",
   syllabusPdf: "/syllabi/backend-development.pdf",
   enquiryLink: "/contact?course=Back+End+Development",

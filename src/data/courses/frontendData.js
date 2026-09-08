@@ -8,7 +8,7 @@ export const frontendCourseData = {
   duration: "4 Months",
   mode: "Live + Recorded",
   originalPrice: "₹8,999",
-  price: "₹4,999 + 18% GST",
+  price: "₹4,999 + GST",
   enrollmentLink: "https://payments.cashfree.com/forms/frontend-course",
   syllabusPdf: "/syllabi/frontend-development.pdf",
   enquiryLink: "/contact?course=Front+End+Development",
