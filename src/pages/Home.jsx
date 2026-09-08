@@ -7,6 +7,70 @@ import {
 } from 'lucide-react';
 
 const GwcHome = () => {
+  // --- AEO / GEO SCHEMA DATA (Invisible to Humans, Read by AI) --- //
+  const homepageFAQSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is GWC Academy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GWC Academy is an elite IT training institute and the educational branch of Vaptura Labs. We provide practical, cohort-based certification training in Full-Stack Web Development, Cyber Security (CEH), and Cloud Infrastructure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who teaches the courses at GWC Academy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our curriculum is led by active industry practitioners and engineers from Vaptura Labs, bringing real-world SOC, DevSecOps, and Penetration Testing experience directly to the classroom."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need prior coding experience?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not for our Foundation tracks. We take you from absolute zero to deployable skills. Advanced Career Programs do require basic syntax knowledge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will I get a certificate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every completed program includes an industry-recognized certificate of completion from GWC Academy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Vaptura Labs internship work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Top performers in our signature 6-month cohorts receive a direct interview for a 3-month paid internship at our IT services company, Vaptura Labs, working on live client projects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this suitable for working professionals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Our live batches are scheduled on weekends and evenings specifically for upskilling professionals in India."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are live classes recorded?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All live mentorship sessions are recorded and available in your student portal within 24 hours so you never miss a concept."
+        }
+      }
+    ]
+  };
+
   // --- CONTENT DATA --- //
   const programs = [
     { 
@@ -17,17 +81,17 @@ const GwcHome = () => {
       mode: "Live + Recorded",
       projects: "4+ Industry Projects",
       outcomes: ["Deploy responsive front-ends in React", "Design secure APIs", "Publish portfolio projects"],
-      link: "/programs/development"
+      link: "/courses/full-stack-web-dev"
     },
     { 
       title: "Cyber Security & VAPT", 
       desc: "Master offensive and defensive security for enterprise environments.", 
       level: "Intermediate to Advanced",
-      duration: "6 Months",
+      duration: "4 Months",
       mode: "Live + Recorded",
       projects: "Live Target Environments",
-      outcomes: ["Perform real-world VAPT", "Deploy & manage MS Sentinel", "Harden Linux infrastructure"],
-      link: "/programs/cybersecurity"
+      outcomes: ["Perform real-world VAPT", "Write vulnerability reports", "Harden Linux infrastructure"],
+      link: "/courses/vapt-beginner"
     },
     { 
       title: "Cloud Infrastructure", 
@@ -37,7 +101,7 @@ const GwcHome = () => {
       mode: "Live + Recorded",
       projects: "3+ Cloud Deployments",
       outcomes: ["Deploy code to AWS/Azure/GCP", "Manage IAM and security", "Build CI/CD pipelines"],
-      link: "/programs/cloud"
+      link: "/courses/cloud-infrastructure"
     },
     { 
       title: "Programming Foundations", 
@@ -47,11 +111,13 @@ const GwcHome = () => {
       mode: "Live + Recorded",
       projects: "Logic & Algorithm Challenges",
       outcomes: ["Write clean, reusable Python/Java", "Master core data structures", "Build logical problem-solving skills"],
-      link: "/programs/foundation"
+      link: "/courses/python-foundation"
     }
   ];
 
   const faqs = [
+    { q: "What is GWC Academy?", a: "GWC Academy is an elite IT training institute and the educational branch of Vaptura Labs. We provide practical, cohort-based certification training in Full-Stack Web Development, Cyber Security, and Cloud Infrastructure." },
+    { q: "Who teaches the courses?", a: "Our curriculum is led by active industry practitioners and engineers from Vaptura Labs, bringing real-world SOC, DevSecOps, and Penetration Testing experience directly to the classroom." },
     { q: "Do I need prior coding experience?", a: "Not for our Foundation tracks. We take you from absolute zero to deployable skills. Advanced Career Programs do require basic syntax knowledge." },
     { q: "Will I get a certificate?", a: "Yes, every completed program includes an industry-recognized certificate of completion from GWC Academy." },
     { q: "How does the Vaptura Labs internship work?", a: "Top performers in our signature 6-month cohorts receive a direct interview for a 3-month paid internship at our IT services company, Vaptura Labs, working on live client projects." },
@@ -62,10 +128,11 @@ const GwcHome = () => {
   return (
     <div className="bg-slate-50 font-sans text-slate-900 w-full">
       
-      {/* --- SEO CONFIGURATION --- */}
+      {/* --- SEO CONFIGURATION (Now with injected Schema) --- */}
       <SEO 
         title="GWC Academy | Live IT Courses, Projects, Cybersecurity & Cloud Training"
         description="Learn Full Stack Development, Python, Java, Cybersecurity, VAPT, SOC and Cloud through live classes, recorded lessons, projects, industry exposure and career-focused training."
+        schemaMarkup={homepageFAQSchema}
       />
 
       {/* 1. HERO SECTION */}
@@ -89,7 +156,7 @@ const GwcHome = () => {
               <Link to="/courses" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-xl shadow-blue-900/50 text-lg transition flex items-center justify-center gap-2">
                 View Career Programs <ChevronRight size={20} />
               </Link>
-              <Link to="/career-support" className="w-full sm:w-auto bg-transparent border border-slate-600 hover:border-slate-400 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition flex items-center justify-center gap-2">
+              <Link to="/contact" className="w-full sm:w-auto bg-transparent border border-slate-600 hover:border-slate-400 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition flex items-center justify-center gap-2">
                 Book Free Counselling
               </Link>
             </div>
@@ -231,7 +298,7 @@ const GwcHome = () => {
           </div>
 
           <div className="text-center">
-            <Link to="/internship" className="inline-block bg-white text-blue-800 font-extrabold py-4 px-10 rounded-xl shadow-2xl hover:bg-slate-50 transition-all hover:scale-105 text-lg">
+            <Link to="/about" className="inline-block bg-white text-blue-800 font-extrabold py-4 px-10 rounded-xl shadow-2xl hover:bg-slate-50 transition-all hover:scale-105 text-lg">
               Explore The Internship Pipeline
             </Link>
             <p className="text-blue-200 text-sm mt-4">*Selection based on cohort performance and internal mock interviews.</p>
@@ -308,7 +375,6 @@ const GwcHome = () => {
           
           <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-200 text-left flex flex-col md:flex-row gap-10 items-center relative">
             <div className="w-40 h-40 bg-slate-200 rounded-full shrink-0 border-4 border-white shadow-lg overflow-hidden">
-                {/* Image Placeholder - Replace with actual photo */}
                 <img src="/images/manish.png" alt="Manish Goswami" className="w-full h-full object-cover" />
             </div>
             <div className="flex-grow">
@@ -366,15 +432,15 @@ const GwcHome = () => {
         </div>
       </section>
 
-      {/* 8. RISK REVERSAL & FAQ */}
+      {/* 8. RISK REVERSAL & FAQ (Visual FAQ) */}
       <section className="py-24 bg-white px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Transparent Pricing & Clear Policies</h2>
             <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-600">
-              <span className="bg-slate-100 px-4 py-2 rounded-full">🔒 Secure online payment</span>
-              <span className="bg-slate-100 px-4 py-2 rounded-full">📄 GST invoice available</span>
-              <span className="bg-slate-100 px-4 py-2 rounded-full">💬 Support via WhatsApp</span>
+              <span className="bg-slate-100 px-4 py-2 rounded-full flex items-center gap-2">🔒 Secure online payment</span>
+              <span className="bg-slate-100 px-4 py-2 rounded-full flex items-center gap-2">📄 GST invoice available</span>
+              <span className="bg-slate-100 px-4 py-2 rounded-full flex items-center gap-2">💬 Support via WhatsApp</span>
             </div>
           </div>
           
@@ -405,7 +471,7 @@ const GwcHome = () => {
              <Link to="/courses" className="inline-flex items-center justify-center bg-white text-blue-700 hover:bg-slate-50 font-bold py-4 px-10 rounded-xl shadow-2xl text-lg transition">
               Explore All Programs
             </Link>
-             <Link to="/career-support" className="inline-flex items-center justify-center bg-blue-800 border border-blue-600 hover:bg-blue-900 text-white font-bold py-4 px-10 rounded-xl shadow-xl text-lg transition">
+             <Link to="/contact" className="inline-flex items-center justify-center bg-blue-800 border border-blue-600 hover:bg-blue-900 text-white font-bold py-4 px-10 rounded-xl shadow-xl text-lg transition">
               Book Free Counselling
             </Link>
           </div>
